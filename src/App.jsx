@@ -13,11 +13,11 @@ const API_URL = 'http://localhost:3000/tasks';
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  // 1. Стейт для ID (изначально null)
+ 
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState("");
 
-  // Загрузка данных
+
   useEffect(() => {
     fetch(API_URL)
       .then(res => res.json())
@@ -25,10 +25,9 @@ function App() {
       .catch(err => console.error("Ошибка загрузки:", err));
   }, []);
 
-  // 2. Функция PATCH для сохранения изменений
+
   const saveEdit = (id) => {
-    // Используем конкатенацию через +, чтобы не было ошибок синтаксиса
-    fetch(API_URL + "/" + id, {
+   fetch(API_URL + "/" + id, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: editText })
@@ -48,7 +47,7 @@ function App() {
       <div style={{ padding: '40px 20px', maxWidth: '100%', margin: '0 auto' }}>
         <h2 style={{ textAlign: 'center', marginBottom: '30px' }}>Наши товары</h2>
         
-        {/* ИСПРАВЛЕНО: Теперь карточки стоят строго в один ряд */}
+        
         <div style={{ 
           display: 'flex', 
           flexDirection: 'row',
@@ -56,11 +55,11 @@ function App() {
           gap: '20px', 
           overflowX: 'auto', 
           paddingBottom: '20px',
-          justifyContent: 'center' // Центрируем ряд, если карточек мало
+          justifyContent: 'center' 
         }}>
           {tasks.map((task) => (
             <div key={task.id} style={{ minWidth: '280px', flex: '0 0 auto' }}>
-              {/* 3. Условие: если editId равен ID задачи, рисуем инпут */}
+           
               {editId === task.id ? (
                 <div style={{ border: '2px solid #7a7aff', padding: '15px', borderRadius: '8px', background: '#f9f9f9', height: '100%' }}>
                   <Input 
@@ -74,7 +73,7 @@ function App() {
                   </Space>
                 </div>
               ) : (
-                /* Отображаем карточку товара */
+       
                 <Products 
                   item={task} 
                   onEdit={() => {

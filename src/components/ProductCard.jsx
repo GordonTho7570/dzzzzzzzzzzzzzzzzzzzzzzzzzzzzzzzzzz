@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Button } from 'antd';
 
 const ProductCard = ({ product, onEdit }) => {
-  // Защита от краша: если данных нет, не рендерим ничего
+
   if (!product) return null;
 
   return (
@@ -16,7 +16,7 @@ const ProductCard = ({ product, onEdit }) => {
         </div>
       }
     >
-      {/* Исправлено: берем title или name_product */}
+  
       <h3 className="product-title">{product.title || product.name_product}</h3>
       <p>Цена: <b style={{color: '#7a7aff'}}>{product.price}</b></p>
       <p style={{fontSize: '12px', color: '#999'}}>ID: {product.id}</p>
@@ -25,7 +25,7 @@ const ProductCard = ({ product, onEdit }) => {
         <Button type="primary" style={{ backgroundColor: '#7a7aff' }}>
           Купить
         </Button>
-        {/* Кнопка изменить теперь здесь */}
+       
         <Button onClick={onEdit}>
           Изменить
         </Button>
